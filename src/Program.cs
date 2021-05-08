@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Reflection;
+using System.Security.Cryptography;
 
 namespace Lncodes.Example.Reflection
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        protected Program() { }
+
+        /// <summary>
+        /// Main Program
+        /// </summary>
+        private static void Main()
         {
-            var abilityInstance = PickRandomHeroAbility();
-            ShowAbilityData(abilityInstance);
-            CastAllAbility(abilityInstance);
+            var abilityId = GetRandomAbilityTypesId();
+            var abilityController = CreateAbilityTypesById(abilityId);
+            ShowAbilityData(abilityController);
+            CastAllAbility(abilityController);
         }
 
         /// <summary>
@@ -17,9 +27,9 @@ namespace Lncodes.Example.Reflection
         /// </summary>
         /// <returns cref="AbilityController"></returns>
         /// <exception cref="Exception">Thrown when random value > 2</exception>
-        private static AbilityController PickRandomHeroAbility()
+        private static AbilityController CreateAbilityTypesById(int abilityTypesId)
         {
-            switch (new Random().Next(3))
+            switch (abilityTypesId)
             {
                 case 0:
                     return Activator.CreateInstance<AbaddonAbilityController>();
@@ -28,7 +38,7 @@ namespace Lncodes.Example.Reflection
                 case 2:
                     return Activator.CreateInstance<FlameLordAbilityController>();
                 default:
-                    throw new Exception("Error to random hero");
+                    throw new ArgumentOutOfRangeException(nameof(abilityTypesId));
             }
         }
 
@@ -61,6 +71,16 @@ namespace Lncodes.Example.Reflection
             MethodInfo[] methodInfo = abilityController.GetType().GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
             foreach (var info in methodInfo)
                 info.Invoke(abilityController, null);
+        }
+
+        /// <summary>
+        /// Method for random ability types id
+        /// </summary>
+        /// <returns cref=int></returns>
+        private static int GetRandomAbilityTypesId()
+        {
+            var ammountOfAbilityTypes = 3;
+            return RandomNumberGenerator.GetInt32(ammountOfAbilityTypes);
         }
     }
 }

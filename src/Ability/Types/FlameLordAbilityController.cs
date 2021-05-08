@@ -4,7 +4,9 @@ namespace Lncodes.Example.Reflection
 {
     public sealed class FlameLordAbilityController : AbilityController
     {
-        // Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public FlameLordAbilityController() : base(damage: 50, cooldown: 150, range: 5) { }
 
         /// <summary>
