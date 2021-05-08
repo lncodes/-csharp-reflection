@@ -80,7 +80,7 @@ namespace Lncodes.Example.Reflection
         private static int GetRandomAbilityTypesId()
         {
             var ammountOfAbilityTypes = 3;
-            return RandomNumberGenerator.GetInt32(0, ammountOfAbilityTypes);
+            return RandomNumberGenerator.GetInt32(ammountOfAbilityTypes);
         }
     }
 }

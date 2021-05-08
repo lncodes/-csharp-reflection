@@ -4,7 +4,9 @@ namespace Lncodes.Example.Reflection
 {
     public sealed class AbaddonAbilityController : AbilityController
     {
-        // Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public AbaddonAbilityController() : base(damage: 10, cooldown: 130, range: 25) { }
 
         /// <summary>

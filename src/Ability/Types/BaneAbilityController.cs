@@ -4,7 +4,9 @@ namespace Lncodes.Example.Reflection
 {
     public sealed class BaneAbilityController : AbilityController
     {
-        // Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public BaneAbilityController() : base(damage: 100, cooldown: 200, range: 10) { }
 
         /// <summary>
