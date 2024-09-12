@@ -1,30 +1,29 @@
 ﻿using System;
 
-namespace Lncodes.Example.Reflection
+namespace Lncodes.Example.Reflection;
+
+public sealed class BaneAbilityController : AbilityController
 {
-    public sealed class BaneAbilityController : AbilityController
-    {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public BaneAbilityController() : base(damage: 100, cooldown: 200, range: 10) { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BaneAbilityController"/> class with predefined ability parameters.
+    /// </summary>
+    public BaneAbilityController() : base(damage: 100, cooldown: 200, range: 10) { }
 
-        /// <summary>
-        /// Method for cast Enfeeble ability
-        /// </summary>
-        public void CastEnfeebleAbility() =>
-            Console.WriteLine("Enfeeble ability is used.");
+    /// <summary>
+    /// Activates the Enfeeble ability.
+    /// </summary>
+    public void CastEnfeebleAbility() =>
+        Console.WriteLine("'Enfeeble' ability has been activated.");
 
-        /// <summary>
-        /// Method for cast Nightmare ability
-        /// </summary>
-        public void CastNightmareAbility() =>
-            Console.WriteLine("Nightmare ability is used.");
+    /// <summary>
+    /// Activates the Nightmare ability.
+    /// </summary>
+    public void CastNightmareAbility() =>
+        Console.WriteLine("'Nightmare' ability has been activated.");
 
-        /// <summary>
-        /// Method for cast Brain Sap ability
-        /// </summary>
-        public void CastBrainSapAbility() =>
-            Console.WriteLine("Brain Sap ability is used.");
-    }
+    /// <summary>
+    /// Activates the Brain Sap ability.
+    /// </summary>
+    public void CastBrainSapAbility() =>
+        Console.WriteLine("'Brain Sap' ability has been activated.");
 }

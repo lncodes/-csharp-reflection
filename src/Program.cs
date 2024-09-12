@@ -2,85 +2,78 @@
 using System.Reflection;
 using System.Security.Cryptography;
 
-namespace Lncodes.Example.Reflection
+namespace Lncodes.Example.Reflection;
+
+internal static class Program
 {
-    public class Program
+    /// <summary>
+    /// Entry point of the application.
+    /// </summary>
+    private static void Main()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        protected Program() { }
+        var abilityId = GetRandomAbilityTypeId();
+        var abilityController = CreateAbilityControllerById(abilityId);
+        DisplayAllAbilityFields(abilityController);
+        InvokeAllAbilityMethods(abilityController);
+    }
 
-        /// <summary>
-        /// Main Program
-        /// </summary>
-        private static void Main()
+    /// <summary>
+    /// Creates an instance of the ability controller based on the provided ID.
+    /// </summary>
+    /// <param name="abilityTypeId">The ID of the ability type.</param>
+    /// <returns>An instance of the appropriate ability controller.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the ID is not valid.</exception>
+    private static AbilityController CreateAbilityControllerById(int abilityTypeId) =>
+        abilityTypeId switch
         {
-            var abilityId = GetRandomAbilityTypesId();
-            var abilityController = CreateAbilityTypesById(abilityId);
-            ShowAbilityData(abilityController);
-            CastAllAbility(abilityController);
-        }
+            0 => Activator.CreateInstance<AbaddonAbilityController>(),
+            1 => Activator.CreateInstance<BaneAbilityController>(),
+            2 => Activator.CreateInstance<FlameLordAbilityController>(),
+            _ => throw new ArgumentOutOfRangeException(nameof(abilityTypeId), "Invalid ability type ID."),
+        };
 
-        /// <summary>
-        /// Method for pic random hero
-        /// </summary>
-        /// <returns cref="AbilityController"></returns>
-        /// <exception cref="Exception">Thrown when random value > 2</exception>
-        private static AbilityController CreateAbilityTypesById(int abilityTypesId)
+    /// <summary>
+    /// Displays all fields of the given ability controller.
+    /// </summary>
+    /// <param name="abilityController">The ability controller instance.</param>
+    private static void DisplayAllAbilityFields(AbilityController abilityController)
+    {
+        Console.WriteLine($"Display all field information from the '{abilityController.GetType().Name}' class:");
+        FieldInfo[] fields = abilityController.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+        for (int i = 0; i < fields.Length; i++)
         {
-            switch (abilityTypesId)
-            {
-                case 0:
-                    return Activator.CreateInstance<AbaddonAbilityController>();
-                case 1:
-                    return Activator.CreateInstance<BaneAbilityController>();
-                case 2:
-                    return Activator.CreateInstance<FlameLordAbilityController>();
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(abilityTypesId));
-            }
+            Console.WriteLine($"{i + 1}. Field name: '{fields[i].Name}'");
+            if (fields[i].GetCustomAttribute<IgnoreAttribute>() is null)
+                Console.WriteLine($"   Value: {fields[i].GetValue(abilityController)}");
+            else
+                Console.WriteLine("   The value is not displayed because the field has an 'Ignore' attribute.");
         }
+    }
 
-        /// <summary>
-        /// Method for show hero ability data
-        /// </summary>
-        /// <param name="abilityController"></param>
-        private static void ShowAbilityData(AbilityController abilityController)
+    /// <summary>
+    /// Invoke all methods of the given ability controller.
+    /// </summary>
+    /// <param name="abilityController">The ability controller instance.</param>
+    private static void InvokeAllAbilityMethods(AbilityController abilityController)
+    {
+        Console.WriteLine();
+        Console.WriteLine($"Display all method information from the '{abilityController.GetType().Name}' class:");
+        MethodInfo[] methods = abilityController.GetType().GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
+        for (int i = 0; i < methods.Length; i++)
         {
-            Console.WriteLine($"List ability data from {abilityController.GetType().Name} class :");
-
-            FieldInfo[] fieldInfo = abilityController.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
-            foreach (var info in fieldInfo)
-            {
-                if (info.GetCustomAttribute<IgnoreAttribute>() is null)
-                    Console.WriteLine($"{info.Name} ability value is {info.GetValue(abilityController)}.");
-                else
-                    Console.WriteLine($"Can't show {info.Name} value because the Range field has Ignore costume attribute.");
-            }
+            Console.WriteLine($"{i+1}. Method name: '{methods[i].Name}'");
+            Console.Write("   Result: ");
+            methods[i].Invoke(abilityController, null);
         }
+    }
 
-        /// <summary>
-        /// Method for cast hero ability
-        /// </summary>
-        /// <param name="abilityController"></param>
-        private static void CastAllAbility(AbilityController abilityController)
-        {
-            Console.WriteLine();
-            Console.WriteLine($"Cast all ability from {abilityController.GetType().Name} class :");
-            MethodInfo[] methodInfo = abilityController.GetType().GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
-            foreach (var info in methodInfo)
-                info.Invoke(abilityController, null);
-        }
-
-        /// <summary>
-        /// Method for random ability types id
-        /// </summary>
-        /// <returns cref=int></returns>
-        private static int GetRandomAbilityTypesId()
-        {
-            var ammountOfAbilityTypes = 3;
-            return RandomNumberGenerator.GetInt32(ammountOfAbilityTypes);
-        }
+    /// <summary>
+    /// Generates a random ID for the ability type.
+    /// </summary>
+    /// <returns>A randomly selected ability type ID.</returns>
+    private static int GetRandomAbilityTypeId()
+    {
+        const int amountOfAbilityTypes = 3;
+        return RandomNumberGenerator.GetInt32(amountOfAbilityTypes);
     }
 }
