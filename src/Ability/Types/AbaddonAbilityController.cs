@@ -1,30 +1,29 @@
 ﻿using System;
 
-namespace Lncodes.Example.Reflection
+namespace Lncodes.Example.Reflection;
+
+public sealed class AbaddonAbilityController : AbilityController
 {
-    public sealed class AbaddonAbilityController : AbilityController
-    {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public AbaddonAbilityController() : base(damage: 10, cooldown: 130, range: 25) { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AbaddonAbilityController"/> class with predefined ability parameters.
+    /// </summary>
+    public AbaddonAbilityController() : base(damage: 10, cooldown: 130, range: 25) { }
 
-        /// <summary>
-        /// Method for cast Mist Coil ability
-        /// </summary>
-        public void CastMistCoilAbility() =>
-            Console.WriteLine("Mist Coil ability is used.");
+    /// <summary>
+    /// Activates the Mist Coil ability.
+    /// </summary>
+    public void CastMistCoilAbility() =>
+        Console.WriteLine("'Mist Coil' ability has been activated.");
 
-        /// <summary>
-        /// Method for cast Aphotic Shield ability
-        /// </summary>
-        public void CastAphoticShieldAbility() =>
-            Console.WriteLine("Aphotic Shield ability is used.");
+    /// <summary>
+    /// Activates the Aphotic Shield ability.
+    /// </summary>
+    public void CastAphoticShieldAbility() =>
+        Console.WriteLine("'Aphotic Shield' ability has been activated.");
 
-        /// <summary>
-        /// Method for cast Curse Of Avernus ability
-        /// </summary>
-        public void CastCurseOfAvernusAbility() =>
-            Console.WriteLine("Curse Of Avernus ability is used.");
-    }
+    /// <summary>
+    /// Activates the Curse Of Avernus ability.
+    /// </summary>
+    public void CastCurseOfAvernusAbility() =>
+        Console.WriteLine("3. 'Curse Of Avernus' ability has been activated.");
 }
