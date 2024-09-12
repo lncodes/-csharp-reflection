@@ -7,11 +7,11 @@
 
 <h1 align="center">C# Reflection</h1>
 <p align="center">
-  <a href="{{REPOSITORY_URL}}/actions/workflows/build-and-publish-dotnet.yml">
-      <img src="{{REPOSITORY_URL}}/actions/workflows/build-and-publish-dotnet.yml/badge.svg">
+  <a href="https://github.com/lncodes/csharp-reflection/actions/workflows/build-and-publish-dotnet.yml">
+      <img src="https://github.com/lncodes/csharp-reflection/actions/workflows/build-and-publish-dotnet.yml/badge.svg">
   </a>
-  <a href="https://sonarcloud.io/dashboard?id=lncodes_{{REPOSITORY_NAME}}">
-      <img src="https://sonarcloud.io/api/project_badges/measure?project=lncodes_{{REPOSITORY_NAME}}&metric=alert_status">
+  <a href="https://sonarcloud.io/dashboard?id=lncodes_csharp-reflection">
+      <img src="https://sonarcloud.io/api/project_badges/measure?project=lncodes_csharp-reflection&metric=alert_status">
   </a>
 </p>
 
@@ -28,7 +28,7 @@
 
 This repository demonstrates the use of C# Reflection through a simple console application. In this repository, reflection is used to inspect and manipulate metadata at runtime, allowing the program to dynamically create instances, retrieve field information, invoke methods, and check attributes in hero ability classes. By using reflection, metadata can be inspected, methods can be called dynamically, and types can be created at runtime, which enhances flexibility and adaptability in managing and interacting with various types.
 
-For more information about C# Reflection, check out the blog post: [C# Reflection - Last Night Codes](https://www.lncodes.com/{{REPOSITORY_NAME}}).
+For more information about C# Reflection, check out the blog post: [C# Reflection - Last Night Codes](https://www.lncodes.com/csharp-reflection).
 
 <h2 id="installation">📦 Installation</h2>
 
@@ -36,7 +36,7 @@ To set up this C# console application, follow these steps:
 
 1. Clone or download the project.
     ``` bash 
-    git clone {{REPOSITORY_URL}}.git
+    git clone https://github.com/lncodes/csharp-reflection.git
     ```
 
 2. Open the project
@@ -65,7 +65,7 @@ We appreciate your interest in contributing to this project! For detailed guidel
 
 <h2 id="discussion">💬 Discussion</h2>
 
-If you have any questions or want to discuss anything related to this project, visit our [Discussion Forum]({{REPOSITORY_URL}}/discussions). You can also leave comments on [C# Reflection - Last Night Codes](https://lncodes.com/{{REPOSITORY_NAME}}) blog post for more in-depth discussion on this project’s topics.
+If you have any questions or want to discuss anything related to this project, visit our [Discussion Forum](https://github.com/lncodes/csharp-reflection/discussions). You can also leave comments on [C# Reflection - Last Night Codes](https://lncodes.com/csharp-reflection) blog post for more in-depth discussion on this project’s topics.
 
 <h2 id="license"> 📋 License</h2>
 
